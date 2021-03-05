@@ -1,0 +1,19 @@
+{
+  "name": "@serverless-dns/globalcontext",
+  "version": "1.0.0",
+  "description": "rethink-dns global context",
+  "main": "global-context.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serverless-dns/globalcontext.git"
+  },
+  "author": "",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/serverless-dns/globalcontext/issues"
+  },
+  "homepage": "https://github.com/serverless-dns/globalcontext#readme"
+}

@@ -26,19 +26,12 @@ class SharedContext {
 		this.RequestLogThreadBlock = false
 		this.ErrorLogThreadBlock = false
 		this.UserCountThreadBlock = false
+		this.LoadingError = false	
+		this.exception = false	
+		this.exceptionFrom = ""
 	}
 
 	async RethinkModule(commonContext, thisRequest, event) {
-		let retryCount = 0;
-		let retryLimit = 5;
-		while (commonContext.NowLoading == true) {
-			if (retryCount >= retryLimit) {
-				break
-			}
-			await sleep(10)
-			retryCount++
-		}
-
 		if (commonContext.loaded == false && commonContext.NowLoading == false) {
 			await commonContext.Init(thisRequest)
 		}
@@ -47,6 +40,7 @@ class SharedContext {
 	async Init(thisRequest) {
 		try {
 			this.NowLoading = true
+			this.LoadingError = false
 			this.GlobalContext = new GlobalMember()
 			this.DomainNameCache = new LocalCache("Domain-Name-Cache", 5000, 2, 10000, 0.00027, 0.00001, 500, 10) //0.4 % false postive, .1mb size
 			this.UserConfigCache = new LocalCache("User-Config-Cache", 1000, 2, 5000, 0.00027, 0.0001, 500, 10) //0% false postive
@@ -63,6 +57,11 @@ class SharedContext {
 			this.NowLoading = false
 		}
 		catch (e) {
+			this.LoadingError = true
+			this.NowLoading = false
+			this.loaded = false
+			this.exception = e
+			this.exceptionFrom = "global-context.js - Init"
 			thisRequest.StopProcessing = true
 			thisRequest.IsException = true
 			thisRequest.exception = e

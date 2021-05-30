@@ -1,6 +1,6 @@
 {
   "name": "@serverless-dns/globalcontext",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "rethink-dns global context",
   "main": "global-context.js",
   "scripts": {

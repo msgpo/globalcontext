@@ -42,6 +42,8 @@ function setCFmember(){
     this.CFmember.processDnsOnDnsParserException = CF_PROCESS_DNS_ON_DNSPARSER_EXCEPTION
     this.CFmember.processDnsOnServerException = CF_PROCESS_DNS_ON_SERVER_EXCEPTION
     this.CFmember.onInvalidFlagStopProcessing = CF_ON_INVALID_FLAG_STOPPROCESSING
+    this.CFmember.dnsResolverDomainName = CF_DNS_RESOLVER_DOMAIN_NAME
+    this.CFmember.dnsResolverPathName = Cf_DNS_RESOLVER_PATH_NAME
 }
 
 
